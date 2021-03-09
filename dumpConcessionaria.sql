@@ -40,4 +40,4 @@ INSERT INTO CARRO (modelo, ano, cor, preco, marca) VALUES
 ("New Azera", 2020, "branco", 269900.00, 6),
 ("Camaro 2020", 2020, "vermelho", 403000.00, 7),
 ("Classe A Sedan", 2021, "branco", 190900.00, 8),
-("BMW Série 8 Coupé", 2020, "laranja metálico", 881950.00, 9);
+("BMW Serie 8 Coupe", 2020, "laranja metalico", 881950.00, 9);

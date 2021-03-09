@@ -1,7 +1,7 @@
+package modelo;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import DAO.MarcaDAO;
-import modelo.Marca;
 
 public class ModeloTabelaMarca extends AbstractTableModel {
 
@@ -65,8 +65,19 @@ public class ModeloTabelaMarca extends AbstractTableModel {
 		dao.inserir(new Marca(0, nome, cnpj, slogan));
 		atualizar();
 	}
+	
+	public void remover(int id) {
+		dao.remover(id);
+		atualizar();
+	}
+	
+	public void update(int id, String nome, String cnpj, String slogan) {
+		Marca m = new Marca(id, nome, cnpj, slogan);
+		dao.atualizar(m);
+		atualizar();
+	}
 
-	void atualizar() {
+	private void atualizar() {
 		lista = dao.getAll();
 		numLinhas = lista.size();
 		this.fireTableDataChanged();

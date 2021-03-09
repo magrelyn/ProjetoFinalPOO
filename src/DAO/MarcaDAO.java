@@ -68,6 +68,7 @@ public class MarcaDAO implements PadraoDAO<Marca> {
 			ps.setString(1, obj.getNome());
 			ps.setString(2, obj.getCnpj());
 			ps.setString(3, obj.getSlogan());
+			ps.setInt(4, obj.getIdMar());
 
 			res = ps.executeUpdate();
 			FabricaConexao.fechaConexao(con, ps);

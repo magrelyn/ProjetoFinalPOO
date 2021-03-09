@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class FabricaConexao {
-	private final static String url = "jdbc:mysql://localhost/concessonaria";
+	private final static String url = "jdbc:mysql://localhost/concessionaria";
 	private final static String user = "root";
 	private final static String pass = "";
 

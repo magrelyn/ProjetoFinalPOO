@@ -8,6 +8,6 @@ Modelo Relacional:
 MARCA (id_mar, nome, cnpj, slogan)
 	id_mar é PK
 	
-CARRO (id_car, modelo, ano, cor, marca)
+CARRO (id_car, modelo, ano, cor, preco, marca)
 	id_car é PK
 	marca REFERENCIA MARCA
