@@ -13,8 +13,8 @@ import modelo.Marca;
 
 public class CarroDAO implements PadraoDAO<Carro> {
 	
-	private final String INSERT = "INSERT INTO CARRO (modelo, ano, cor, preco, marca) VALUES (?,?,?,?)";
-	private final String UPDATE = "UPDATE CARRO SET MODELO=?, ANO=?, COR=?, PRECO=? WHERE ID_CAR=?";
+	private final String INSERT = "INSERT INTO CARRO (modelo, ano, cor, preco, marca) VALUES (?,?,?,?,?)";
+	private final String UPDATE = "UPDATE CARRO SET MODELO=?, ANO=?, COR=?, PRECO=?, MARCA=? WHERE ID_CAR=?";
 	private final String DELETE = "DELETE FROM CARRO WHERE ID_CAR=?";
 	private final String LIST = "SELECT * FROM CARRO";
 	private final String LISTBYID = "SELECT * FROM CARRO WHERE ID_CAR=?";
@@ -73,6 +73,7 @@ public class CarroDAO implements PadraoDAO<Carro> {
 			ps.setString(3, obj.getCor());
 			ps.setDouble(4, obj.getPreco());
 			ps.setInt(5, obj.getMarca().getIdMar());
+			ps.setInt(6, obj.getIdCar());
 
 			res = ps.executeUpdate();
 			FabricaConexao.fechaConexao(con, ps);

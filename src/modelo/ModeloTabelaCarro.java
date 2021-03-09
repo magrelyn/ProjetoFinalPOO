@@ -16,7 +16,7 @@ public class ModeloTabelaCarro extends AbstractTableModel {
 		dao = new CarroDAO();
 		lista = dao.getAll();
 		numLinhas = lista.size();
-		numColunas = Marca.class.getDeclaredFields().length;
+		numColunas = Carro.class.getDeclaredFields().length;
 	}
 
 	@Override

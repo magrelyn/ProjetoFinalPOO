@@ -17,6 +17,9 @@ public class MarcaDAO implements PadraoDAO<Marca> {
 	private final String DELETE = "DELETE FROM MARCA WHERE ID_MAR=?";
 	private final String LIST = "SELECT * FROM MARCA";
 	private final String LISTBYID = "SELECT * FROM MARCA WHERE ID_MAR=?";
+	
+	private final String ALLNOMES = "SELECT NOME FROM MARCA";
+	private final String BYNOME = "SELECT * FROM MARCA WHERE NOME=?";
 
 	@Override
 	public int inserir(Marca obj) {
@@ -147,5 +150,65 @@ public class MarcaDAO implements PadraoDAO<Marca> {
 		}
 		return m;
 	}
+	
+	public List<String> allNomes(){
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<String> lista = new ArrayList<>();
+
+		String nome;
+
+		try {
+			con = FabricaConexao.getConexao();
+			ps = con.prepareStatement(ALLNOMES);
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				nome = rs.getString(1);
+				lista.add(nome);
+			}
+			FabricaConexao.fechaConexao(con, ps, rs);
+		} catch (SQLException e) {
+			System.out.println("Erro: " + e);
+		}
+		return lista;
+	}
+	
+	public Marca getByNome(String nome) {
+
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		int idMar = 0;
+		String cnpj;
+		String slogan;
+		Marca m = null;
+		String name;
+
+		try {
+			con = FabricaConexao.getConexao();
+			ps = con.prepareStatement(BYNOME);
+
+			ps.setString(1, nome);
+
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				idMar = rs.getInt(1);
+				name =  rs.getString(2);
+				cnpj = rs.getString(3);
+				slogan = rs.getString(4);
+				m = new Marca(idMar, name, cnpj, slogan);
+			}
+
+			FabricaConexao.fechaConexao(con, ps, rs);
+		} catch (SQLException e) {
+			System.out.println("Erro: " + e);
+		}
+		return m;
+	}
+
 
 }
