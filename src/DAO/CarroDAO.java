@@ -18,6 +18,7 @@ public class CarroDAO implements PadraoDAO<Carro> {
 	private final String DELETE = "DELETE FROM CARRO WHERE ID_CAR=?";
 	private final String LIST = "SELECT * FROM CARRO";
 	private final String LISTBYID = "SELECT * FROM CARRO WHERE ID_CAR=?";
+	private final String DELLBYMARCA = "DELETE FROM CARRO WHERE MARCA=?";
 
 	@Override
 	public int inserir(Carro obj) {
@@ -60,6 +61,24 @@ public class CarroDAO implements PadraoDAO<Carro> {
 		}
 	}
 
+	public int dellByMarca(int marca) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		int res = 0;
+		try {
+			con = FabricaConexao.getConexao();
+			ps = con.prepareStatement(DELLBYMARCA);
+			ps.setInt(1, marca);
+			res = ps.executeUpdate();
+			FabricaConexao.fechaConexao(con, ps);
+			return res;
+		} catch (SQLException e) {
+			System.out.println("Erro: " + e);
+			return 1;
+		}
+	}
+
+	
 	@Override
 	public int atualizar(Carro obj) {
 		Connection con = null;

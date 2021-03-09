@@ -53,6 +53,10 @@ public class MarcaDAO implements PadraoDAO<Marca> {
 			ps.setInt(1, codigo);
 			res = ps.executeUpdate();
 			FabricaConexao.fechaConexao(con, ps);
+			
+			CarroDAO cDao = new CarroDAO();
+			cDao.dellByMarca(codigo);
+			
 			return res;
 		} catch (SQLException e) {
 			System.out.println("Erro: " + e);
@@ -75,6 +79,7 @@ public class MarcaDAO implements PadraoDAO<Marca> {
 
 			res = ps.executeUpdate();
 			FabricaConexao.fechaConexao(con, ps);
+			
 			return res;
 		} catch (SQLException e) {
 			System.out.println("Erro: " + e);
