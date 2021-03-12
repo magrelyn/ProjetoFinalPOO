@@ -7,7 +7,6 @@ public class Carro {
 	private int ano;
 	private String cor;
 	private double preco;
-	// private int marca;
 	private Marca marca;
 
 	public Carro(int idCar, String modelo, int ano, String cor, double preco, Marca marca) {

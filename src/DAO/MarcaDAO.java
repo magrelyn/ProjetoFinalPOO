@@ -20,6 +20,7 @@ public class MarcaDAO implements PadraoDAO<Marca> {
 	
 	private final String ALLNOMES = "SELECT NOME FROM MARCA";
 	private final String BYNOME = "SELECT * FROM MARCA WHERE NOME=?";
+	private final String BYNOMES = "SELECT * FROM MARCA WHERE NOME LIKE ?";
 
 	@Override
 	public int inserir(Marca obj) {
@@ -37,7 +38,7 @@ public class MarcaDAO implements PadraoDAO<Marca> {
 			FabricaConexao.fechaConexao(con, ps);
 			return res;
 		} catch (SQLException e) {
-			System.out.println("Erro: " + e);
+			System.out.println("Erro ao inserir marca: " + e);
 			return 1;
 		}
 	}
@@ -59,7 +60,7 @@ public class MarcaDAO implements PadraoDAO<Marca> {
 			
 			return res;
 		} catch (SQLException e) {
-			System.out.println("Erro: " + e);
+			System.out.println("Erro ao remover marca: " + e);
 			return 1;
 		}
 	}
@@ -82,7 +83,7 @@ public class MarcaDAO implements PadraoDAO<Marca> {
 			
 			return res;
 		} catch (SQLException e) {
-			System.out.println("Erro: " + e);
+			System.out.println("Erro ao atualizar marca: " + e);
 			return 1;
 		}
 	}
@@ -115,7 +116,7 @@ public class MarcaDAO implements PadraoDAO<Marca> {
 			}
 			FabricaConexao.fechaConexao(con, ps, rs);
 		} catch (SQLException e) {
-			System.out.println("Erro: " + e);
+			System.out.println("Erro na busca de todas as marcas: " + e);
 		}
 		return lista;
 	}
@@ -151,7 +152,7 @@ public class MarcaDAO implements PadraoDAO<Marca> {
 
 			FabricaConexao.fechaConexao(con, ps, rs);
 		} catch (SQLException e) {
-			System.out.println("Erro: " + e);
+			System.out.println("Erro na busca de marca pelo id: " + e);
 		}
 		return m;
 	}
@@ -175,7 +176,7 @@ public class MarcaDAO implements PadraoDAO<Marca> {
 			}
 			FabricaConexao.fechaConexao(con, ps, rs);
 		} catch (SQLException e) {
-			System.out.println("Erro: " + e);
+			System.out.println("Erro na busca de todos os nomes das marcas: " + e);
 		}
 		return lista;
 	}
@@ -210,10 +211,48 @@ public class MarcaDAO implements PadraoDAO<Marca> {
 
 			FabricaConexao.fechaConexao(con, ps, rs);
 		} catch (SQLException e) {
-			System.out.println("Erro: " + e);
+			System.out.println("Erro na busca da marca por nome: " + e);
 		}
 		return m;
 	}
 
+	public List<Marca> getByNomes(String chave) {
+
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		int idMar;
+		String name;
+		String cnpj;
+		String slogan;
+		Marca m = null;
+		List<Marca> lista = new ArrayList<>();
+		
+		try {
+			con = FabricaConexao.getConexao();
+			ps = con.prepareStatement(BYNOMES);
+
+			ps.setString(1, '%' + chave + '%');
+
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				idMar = rs.getInt(1);
+				name =  rs.getString(2);
+				cnpj = rs.getString(3);
+				slogan = rs.getString(4);
+				m = new Marca(idMar, name, cnpj, slogan);
+				lista.add(m);
+			}
+			
+			FabricaConexao.fechaConexao(con, ps, rs);
+			
+		} catch (SQLException e) {
+			System.out.println("Erro na busca por nome da marca: " + e);
+		}
+		return lista;
+	}
+	
 
 }
