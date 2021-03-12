@@ -241,9 +241,7 @@ public class CarroDAO implements PadraoDAO<Carro> {
 
 		try {
 			BYOBJ += cons;
-			
-			System.out.println(BYOBJ);
-			
+						
 			con = FabricaConexao.getConexao();
 			ps = con.prepareStatement(BYOBJ);
 			
