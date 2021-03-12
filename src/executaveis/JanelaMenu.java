@@ -78,6 +78,15 @@ public class JanelaMenu extends JFrame {
 		});
 		mntmNewMenuItem_1.setMnemonic('c');
 		mnNewMenu.add(mntmNewMenuItem_1);
+		
+		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Buscar");
+		mntmNewMenuItem_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JanelaBusca a = new JanelaBusca();
+				a.setVisible(true);
+			}
+		});
+		mnNewMenu.add(mntmNewMenuItem_2);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
