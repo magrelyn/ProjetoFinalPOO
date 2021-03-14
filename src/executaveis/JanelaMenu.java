@@ -23,7 +23,7 @@ public class JanelaMenu extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	int posi = 0;
+	private int posi = 0;
 
 	private String[] banners = { "banner0.jpg", "banner1.jpg", "banner2.jpg", "banner3.jpg", "banner4.jpg",
 			"banner5.jpg", };

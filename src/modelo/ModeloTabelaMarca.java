@@ -6,10 +6,10 @@ import DAO.MarcaDAO;
 public class ModeloTabelaMarca extends AbstractTableModel {
 
 	private static final long serialVersionUID = 1L;
-	MarcaDAO dao;
-	List<Marca> lista;
-	int numColunas = 0;
-	int numLinhas = 0;
+	private MarcaDAO dao;
+	private List<Marca> lista;
+	private int numColunas = 0;
+	private int numLinhas = 0;
 
 	public ModeloTabelaMarca() {
 		dao = new MarcaDAO();

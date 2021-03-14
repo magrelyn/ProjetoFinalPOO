@@ -7,10 +7,10 @@ import DAO.CarroDAO;
 public class ModeloTabelaCarro extends AbstractTableModel {
 
 	private static final long serialVersionUID = 1L;
-	CarroDAO dao;
-	List<Carro> lista;
-	int numColunas = 0;
-	int numLinhas = 0;
+	private CarroDAO dao;
+	private List<Carro> lista;
+	private int numColunas = 0;
+	private int numLinhas = 0;
 
 	public ModeloTabelaCarro() {
 		dao = new CarroDAO();
